@@ -1,24 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amazing Events</title>
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
+
 <body>
-    <header>
-        <figure>
-            <img class="logo" src="./assets/amazing_brand.png" alt="logo de Amazing Events">
-        </figure>
-        <nav class="barra_navegacion">
-            <ul>
-                <li><a href="./index.html">HOME</a></li>
-                <li><a href="./upcoming_events.html"></a>UPCOMING EVENTS</li>
-                <li><a href="#"></a>PAST EVENTS</li>
-                <li><a href="./contact.html"></a>CONTACT</li>
-                <li><a href="./stats.html"></a>STATS</li>
-            </ul>
+
+    <body>
+        <!-- barra de navegacion -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                        <div class="container-fluid">
+                            <div class="col-lg-8">
+                                <a class="navbar-brand" href="#">
+                                    <img src="./assets/amazing_brand.png" alt="logo" width="15%" height="24">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="./index.html">HOME</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./upcoming_events.html">UPCOMING EVENTS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">PAST EVENTS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./contact.html">CONTACT</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./stats.html">STATS</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+<!-- Checkbox y barra de busqueda -->
+<div class="container p-5">
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Category">
+                <label class="form-check-label" for="inlineCheckbox1">Food Fair</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Category">
+                <label class="form-check-label" for="inlineCheckbox2">Museum</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Category">
+                <label class="form-check-label" for="inlineCheckbox3">Costume Party</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Category">
+                <label class="form-check-label" for="inlineCheckbox3">Music Concert</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Category">
+                <label class="form-check-label" for="inlineCheckbox3">Race</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Category">
+                <label class="form-check-label" for="inlineCheckbox3">Book Exchange</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Category">
+                <label class="form-check-label" for="inlineCheckbox3">Let's go to the cinema</label>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <nav class="search bar">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+        </div>
         </nav>
-    </header>
-</body>
+    </div>
+</div>
+
+
+<!-- Tarjetas -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 pb-5">
+                    <div class="card text-end">
+                        <img src="./assets/food_fair.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Festival of the collectivities</h5>
+                            <p class="card-text">Enjoy your favorite dishes from different countries in a unique event for the whole family.</p>
+                            <a href="./details.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 pb-5">
+                    <div class="card text-end">
+                        <img src="./assets/outing_to_the_museum.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Art Exhibition</h5>
+                            <p class="card-text">Let's go to the art museum for an incredible tour to learn about the largest dinosaurs.</p>
+                            <a href="./details.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 pb-5">
+                    <div class="card text-end">
+                        <img src="./assets/books.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">School Book Fair</h5>
+                            <p class="card-text">Bring your unused school book and bring the one you need.</p>
+                            <a href="./details.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 pb-5">
+                    <div class="card text-end">
+                        <img src="./assets/marathon.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">10K for life</h5>
+                            <p class="card-text">Come and exercise, improve your health and lifestyle.</p>
+                            <a href="./details.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Pie de pagina -->
+        <div class="fixed-bottom">
+            <div class="row p-2 bg-light">
+                <div class="col-3 col-md-4 col-lg-11">
+                    <a class="btn" href="#" role="button"><img width="30%" src="./assets/whatsapp.png" alt="icono whatsapp"></a>
+                    <a class="btn" href="#" role="button"><img width="30%" src="./assets/instagram.png" alt="icono instagram"></a>
+                    <a class="btn" href="#" role="button"><img width="30%" src="./assets/facebook.png" alt="icono facebook"></a>
+                </div>
+                <div class="col-1">
+                    <p>COHORT</p>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+            </script>
+    </body>
+
 </html>
