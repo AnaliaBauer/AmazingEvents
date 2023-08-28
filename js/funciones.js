@@ -3,7 +3,7 @@ function createTarjetas(Eventos) {
     let contenedorTarjetas = document.getElementById("contenedor-tarjetas");
     for (evento of Eventos) {
 
-        let card = `<div class="col-12 col-sm-6 col-lg-4 col-xl-3 pb-5 d-flex">
+        let card = `<div class="col-12 col-sm-6  col-lg-4 col-xl-3 pb-5 d-flex">
         <div class="card text-end">
         <img src= ${evento.image} class="card-img-top" alt="..." width="100%" height="200px" object-fit-cover>
         <div class="card-body d-flex flex-column">
