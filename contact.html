@@ -6,101 +6,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amazing Events</title>
     <link rel="shortcut icon" href="./assets/favicon.png" type="image/.png">
+    <link rel="stylesheet" href="./css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 
 <body>
-    <!-- Barra de navegacion -->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 col-xl-12">
-                <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                        <div class="col-1 col-sm-6 col-xl-8">
+    <header>
+        <!-- Barra de navegacion -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-xl-12">
+                    <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-between">
                             <a class="navbar-brand" href="./index.html">
                                 <img src="./assets/amazing_brand.png" alt="logo" width="100">
                             </a>
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./index.html">HOME</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./upcoming_events.html">UPCOMING EVENTS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./past_events.html">PAST EVENTS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">CONTACT</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./stats.html">STATS</a>
+                                </li>
+                            </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Titulo seccion -->
+        <div class="container-fluid bg-danger bg-gradient text-center">
+            <div class="row">
+                <div class="col">
+                    <h1>Contact</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <form class="col-lg-4">
+                    <div class="mb-3">
+                        <label for="basic-url-name" class="form-label">Name:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="basic-url-name">
                         </div>
-                    <div class="col-12 col-sm-6 col-xl-4" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="./index.html">HOME</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./upcoming_events.html">UPCOMING EVENTS</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./past_events.html">PAST EVENTS</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">CONTACT</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./stats.html">STATS</a>
-                            </li>
-                        </ul>
                     </div>
-                </nav>
+                    <div class="mb-3">
+                        <label for="basic-url-email" class="form-label">Email:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="basic-url-email">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="basic-url-message" class="form-label">Message:</label>
+                        <div class="input-group">
+                            <textarea class="form-control" id="basic-url-message" aria-label="With textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-lg-4">
+                            <input class="btn btn-danger form-control" type="submit" value="Submit">
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
+    </main>
 
-    <!-- Titulo seccion -->
-    <div class="container-fluid bg-danger bg-gradient text-center">
-        <div class="row">
-            <div class="col">
-                <h1>Contact</h1>
+    <footer>
+        <!-- Pie de pagina -->
+        <div class="container-fluid">
+            <div class="row p-2 bg-light">
+                <div class="col-8 col-sm-9 col-md-10 col-lg-11 col-xl-11">
+                    <a target="_blank" class="btn" href="https://www.whatsapp.com/" role="button"><img width="30"
+                            src="./assets/whatsapp.png" alt="icono whatsapp"></a>
+                    <a target="_blank" class="btn" href="https://www.instagram.com/" role="button"><img width="30"
+                            src="./assets/instagram.png" alt="icono instagram"></a>
+                    <a target="_blank" class="btn" href="https://www.facebook.com" role="button"><img width="30"
+                            src="./assets/facebook.png" alt="icono facebook"></a>
+                </div>
+                <div class="col-1 col-sm-3 col-md-2 col-lg-1 col-xl-1">
+                    <p>COHORT</p>
+                </div>
             </div>
         </div>
-    </div>
-
-    <!-- Formulario -->
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <form class="col-lg-4">
-                <div class="mb-3">
-                    <label for="basic-url-name" class="form-label">Name:</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="basic-url-name">
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="basic-url-email" class="form-label">Email:</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="basic-url-email">
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="basic-url-message" class="form-label">Message:</label>
-                    <div class="input-group">
-                        <textarea class="form-control" id="basic-url-message" aria-label="With textarea"></textarea>
-                    </div>
-                </div>
-                <div class="row justify-content-end">
-                    <div class="col-lg-4">
-                        <input class="btn btn-danger form-control" type="submit" value="Submit">
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Pie de pagina -->
-    <div class="fixed-bottom">
-        <div class="row p-2 bg-light">
-            <div class="col-8 col-sm-9 col-md-10 col-lg-11 col-xl-11">
-                <a target="_blank" class="btn" href="https://www.whatsapp.com/" role="button"><img width="30"
-                        src="./assets/whatsapp.png" alt="icono whatsapp"></a>
-                <a target="_blank" class="btn" href="https://www.instagram.com/" role="button"><img width="30"
-                        src="./assets/instagram.png" alt="icono instagram"></a>
-                <a target="_blank" class="btn" href="https://www.facebook.com" role="button"><img width="30"
-                        src="./assets/facebook.png" alt="icono facebook"></a>
-            </div>
-            <div class="col-1 col-sm-3 col-md-2 col-lg-1 col-xl-1">
-                <p>COHORT</p>
-            </div>
-        </div>
-    </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
