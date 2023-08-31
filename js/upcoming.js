@@ -17,6 +17,6 @@ createTarjetas(proximosEventos)
 
 createSearchBar();
 
-createCheck(data.events, contenedorInputs);
+createCheck(categorias, contenedorInputs);
 
 

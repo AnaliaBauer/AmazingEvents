@@ -2,4 +2,5 @@ createTarjetas(data.events)
 
 createSearchBar();
 
-createCheck(data.events, contenedorInputs);
+createCheck(categorias, contenedorInputs);
+
