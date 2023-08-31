@@ -1,6 +1,5 @@
 let eventosPasados = []
 
-// let fechaActual = new Date(data.currentDate)
 for (let evento of data.events){
 
     // let banana = evento.date.split('-')
@@ -15,6 +14,8 @@ for (let evento of data.events){
 
 createTarjetas(eventosPasados)
 
+createSearchBar();
 
+createCheck(data.events, contenedorInputs);
 
 

@@ -1,6 +1,9 @@
+// Funcion para crear tarjetas
+
+let contenedorTarjetas = document.getElementById("contenedor-tarjetas");
+
 function createTarjetas(Eventos) {
 
-    let contenedorTarjetas = document.getElementById("contenedor-tarjetas");
     for (evento of Eventos) {
 
         let card = `<div class="col-12 col-sm-6  col-lg-4 col-xl-3 pb-5 d-flex">
@@ -19,3 +22,39 @@ function createTarjetas(Eventos) {
 
     }
 }
+
+
+// Funcion para crear barra de busqueda
+
+let contenedorSearchBar = document.getElementById("contenedorSearchBar");
+
+function createSearchBar(){
+    let searchBar = ` <nav class="search bar">
+    <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-danger" type="submit">Search</button>
+    </form>
+</nav>`
+
+    contenedorSearchBar.innerHTML += searchBar
+}
+
+
+// Funcion para crear checkbox
+
+let contenedorInputs = document.getElementById("contenedor-inputs");
+
+function createCheck(array, contenedor){
+
+    let html = "";
+    array.forEach(evento => {
+        html += `<div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Food">
+        <label class="form-check-label" for="inlineCheckbox1">${evento.category}</label>
+        </div>`
+    });
+
+    contenedor.innerHTML = html;
+
+}
+
