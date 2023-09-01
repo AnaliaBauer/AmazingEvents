@@ -10,3 +10,16 @@ body{
 main{
     flex-grow: 1;
 }
+
+#titulo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#titulo > a{
+    text-decoration: none;
+    color: black;
+    margin-left: 10px;
+    margin-right: 10px;
+}
