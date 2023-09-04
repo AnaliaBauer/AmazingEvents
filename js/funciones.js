@@ -71,7 +71,25 @@ function createCheck(array, contenedor) {
 //Funcion para crear tarjeta detalle de evento
 function crearTarjetaDetalle(evento) {
 
-    let details = `<div class="col-lg-5 my-auto mx-auto">
+let details;
+    if(data.currentDate > evento.date){
+        details = `<div class="col-lg-5 my-auto mx-auto">
+    <img class="img-fluid rounded-3" src=${evento.image} alt="imagen del evento">
+    </div>
+    <div class="col-lg-6">
+    <div class="card-body">
+    <h1>${evento.name}</h1>
+    <h2>${evento.category}</h2>
+    <p>${evento.description}</p>
+    <p><strong>Place:</strong> ${evento.place}</p>
+    <p><strong>Capacity: </strong>${evento.capacity}</p>
+    <p><strong>Assistance: </strong>${evento.assistance}</p>
+    <p><strong>Date: </strong>${evento.date}</p>
+    <p><strong>Price: </strong>${evento.price}</p>
+    </div>
+    </div>`
+    } else{
+        details = `<div class="col-lg-5 my-auto mx-auto">
     <img class="img-fluid rounded-3" src=${evento.image} alt="imagen del evento">
     </div>
     <div class="col-lg-6">
@@ -86,6 +104,8 @@ function crearTarjetaDetalle(evento) {
     <p><strong>Price: </strong>${evento.price}</p>
     </div>
     </div>`
+    }
+    
 
     contenedorDetails.innerHTML += details;
 }
