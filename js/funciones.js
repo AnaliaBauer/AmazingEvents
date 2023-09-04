@@ -52,13 +52,16 @@ categorias = categorias.reduce((categorias, categoria) => {
 
 // Funcion para crear checkbox
 function createCheck(array, contenedor) {
-
+    let num = 1
     let html = "";
     array.forEach(categoria => {
+
         html += `<div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="${categoria}">
-        <label class="form-check-label" for="inlineCheckbox1">${categoria}</label>
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox${num}" value="${categoria}">
+        <label class="form-check-label" for="inlineCheckbox${num}">${categoria}</label>
         </div>`
+
+        num++
     });
 
     contenedor.innerHTML = html;
@@ -66,8 +69,8 @@ function createCheck(array, contenedor) {
 }
 
 //Funcion para crear tarjeta detalle de evento
-function crearTarjetaDetalle(evento){
-    
+function crearTarjetaDetalle(evento) {
+
     let details = `<div class="col-lg-5 my-auto mx-auto">
     <img class="img-fluid rounded-3" src=${evento.image} alt="imagen del evento">
     </div>
@@ -83,46 +86,61 @@ function crearTarjetaDetalle(evento){
     <p><strong>Price: </strong>${evento.price}</p>
     </div>
     </div>`
-    
-    contenedorDetails.innerHTML += details; 
+
+    contenedorDetails.innerHTML += details;
 }
+
+
+let checkeados = [];
+let eventosFiltrados = [];
 
 document.addEventListener('input', e => {
     if (e.target.classList.contains('form-check-input')) {
         let inputsCategoria = document.querySelectorAll('.form-check-input');
-        let checkeados = [];
-
+        checkeados = []
         for (input of inputsCategoria) {
             if (input.checked) {
                 checkeados.push(input.value);
             }
         }
+
+        
         if (checkeados.length > 0) {
-            let eventosFiltrados = data.events.filter(evento => checkeados.includes(evento.category));
+            if(resultado.length > 0){
+            eventosFiltrados = resultado.filter(evento => checkeados.includes(evento.category));
+            }else{
+                eventosFiltrados = data.events.filter(evento => checkeados.includes(evento.category));
+            }
             createTarjetas(eventosFiltrados);
         } else {
-            createTarjetas(data.events)
+            createTarjetas(data.events);
         }
-        // filtroCompleto();
+
     }
 });
 
+let resultado = [];
 document.addEventListener('submit', e => {
 
     e.preventDefault()
 
     let busqueda = document.getElementById('buscar').value;
-    let resultado = data.events.filter(item => item.name.toLowerCase().includes(busqueda.trim().toLowerCase()))
-        if(resultado.length > 0){
-            createTarjetas(resultado);
-        }else{
-            mostrarMensaje(busqueda);
-        }
-    // filtroCompleto();
+
+    if (checkeados.length > 0) {
+        resultado = eventosFiltrados.filter(item => item.name.toLowerCase().includes(busqueda.trim().toLowerCase()))
+    } else {
+        resultado = data.events.filter(item => item.name.toLowerCase().includes(busqueda.trim().toLowerCase()))
+    }
+    if (resultado.length > 0) {
+        createTarjetas(resultado);
+    } else {
+        mostrarMensaje(busqueda);
+    }
 });
 
 
-function mostrarMensaje(busqueda){
+
+function mostrarMensaje(busqueda) {
     let mensaje = ` <div class="container-fluid text-center">
     <div class="row">
         <div class="col">
@@ -134,24 +152,4 @@ function mostrarMensaje(busqueda){
 
     contenedorTarjetas.innerHTML = mensaje;
 }
-// function filtroCompleto(){
-//     let busqueda = document.getElementById('buscar').value;
-//     let resultado = data.events.filter(item => item.name.toLowerCase().includes(busqueda.toLowerCase()) || item.description.toLowerCase().includes(busqueda.toLowerCase()))
 
-//     let inputsCategoria = document.querySelectorAll('.form-check-input');
-//         let checkeados = [];
-
-//         for (input of inputsCategoria) {
-//             if (input.checked) {
-//                 checkeados.push(input.value);
-//             }
-//         }
-//         if (checkeados.length > 0 || resultado > 0) {
-//            let eventosFiltrados = resultado.filter(evento => checkeados.includes(evento.category) && resultado.includes(busqueda));
-        
-//             createTarjetas(eventosFiltrados);
-//         }
-//         else {
-//             createTarjetas(data.events)
-//         }
-// }
