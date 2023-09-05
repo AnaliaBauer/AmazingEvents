@@ -191,6 +191,18 @@ const data = {
             estimate: 9000,
             price: 250,
             __v: 0,
+        },    {
+            _id: "639c723d982482e5f2834c03",
+            name: "Kung Fu Panda",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWxLPYgXEpEuERARNk3QTRhxWjegt2pV9pGrFGWuAeuQ&s",
+            date: "2023-10-15",
+            description: "The most awesome heroe with a lot of awesomeness",
+            category: "Cinema",
+            place: "Room D1",
+            capacity: 9000,
+            estimate: 9000,
+            price: 250,
+            __v: 0,
         },
     ],
 };

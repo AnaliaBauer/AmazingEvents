@@ -5,6 +5,11 @@ let categorias = data.events.map(evento => evento.category);
 let contenedorInputs = document.getElementById("contenedor-inputs");
 let contenedorDetails = document.getElementById('contenedor-details');
 
+let checkeados = [];
+let eventosFiltrados = [];
+let resultado = [];
+let checkCategorias=[];
+
 // Funcion para crear tarjetas
 function createTarjetas(Eventos) {
 
@@ -40,14 +45,12 @@ function createSearchBar() {
     contenedorSearchBar.innerHTML += searchBar
 }
 
-// Filtro de check
+// Filtro de check 
 categorias = categorias.reduce((categorias, categoria) => {
     if (!categorias.includes(categoria)) {
         categorias.push(categoria);
-        return categorias;
-    } else {
-        return categorias;
     }
+    return categorias;
 }, [])
 
 // Funcion para crear checkbox
@@ -71,8 +74,8 @@ function createCheck(array, contenedor) {
 //Funcion para crear tarjeta detalle de evento
 function crearTarjetaDetalle(evento) {
 
-let details;
-    if(data.currentDate > evento.date){
+    let details;
+    if (data.currentDate > evento.date) {
         details = `<div class="col-lg-5 my-auto mx-auto">
     <img class="img-fluid rounded-3" src=${evento.image} alt="imagen del evento">
     </div>
@@ -88,7 +91,7 @@ let details;
     <p><strong>Price: </strong>${evento.price}</p>
     </div>
     </div>`
-    } else{
+    } else {
         details = `<div class="col-lg-5 my-auto mx-auto">
     <img class="img-fluid rounded-3" src=${evento.image} alt="imagen del evento">
     </div>
@@ -105,66 +108,50 @@ let details;
     </div>
     </div>`
     }
-    
+
 
     contenedorDetails.innerHTML += details;
 }
 
 
-let checkeados = [];
-let eventosFiltrados = [];
+contenedorInputs.addEventListener('input', e => {
 
-document.addEventListener('input', e => {
     if (e.target.classList.contains('form-check-input')) {
-        let inputsCategoria = document.querySelectorAll('.form-check-input');
-        checkeados = []
-        for (input of inputsCategoria) {
-            if (input.checked) {
-                checkeados.push(input.value);
-            }
-        }
-
-        
-        if (checkeados.length > 0) {
-            if(resultado.length > 0){
-            eventosFiltrados = resultado.filter(evento => checkeados.includes(evento.category));
-            }else{
-                eventosFiltrados = data.events.filter(evento => checkeados.includes(evento.category));
-            }
-            createTarjetas(eventosFiltrados);
-        } else {
-            createTarjetas(data.events);
-        }
-
+        checkCategorias = document.querySelectorAll('.form-check-input');
     }
+    resultado = filtrarEventos(checkCategorias)
+    if(resultado.length > 0){
+
+        createTarjetas(resultado)
+    }else{
+        mostrarMensaje()
+    }
+ 
 });
 
-let resultado = [];
-document.addEventListener('submit', e => {
-
-    e.preventDefault()
-
-    let busqueda = document.getElementById('buscar').value;
-
-    if (checkeados.length > 0) {
-        resultado = eventosFiltrados.filter(item => item.name.toLowerCase().includes(busqueda.trim().toLowerCase()))
-    } else {
-        resultado = data.events.filter(item => item.name.toLowerCase().includes(busqueda.trim().toLowerCase()))
+contenedorSearchBar.addEventListener('submit', e => {
+    
+    e.preventDefault() 
+    if (e.target.classList.contains('form-check-input')) {
+        checkCategorias = document.querySelectorAll('.form-check-input');
     }
-    if (resultado.length > 0) {
-        createTarjetas(resultado);
-    } else {
-        mostrarMensaje(busqueda);
+    resultado = filtrarEventos(checkCategorias)
+    if(resultado.length > 0){
+
+        createTarjetas(resultado)
+    }else{
+        mostrarMensaje()
     }
+
 });
 
 
 
-function mostrarMensaje(busqueda) {
+function mostrarMensaje() {
     let mensaje = ` <div class="container-fluid text-center">
     <div class="row">
         <div class="col">
-            <h1>Sorry, we couldn't find any result for ${busqueda}</h1>
+            <h1>Sorry, we couldn't find any result for the specified search</h1>
         </div>
     </div>
 </div>`
@@ -172,4 +159,67 @@ function mostrarMensaje(busqueda) {
 
     contenedorTarjetas.innerHTML = mensaje;
 }
+
+function filtrarPorCategoria(eventos, categorias) {
+    eventosFiltrados = eventos.filter(evento => categorias.includes(evento.category));
+    return eventosFiltrados
+}
+
+function filtrarPorTitulo(eventos, titulo) {
+    eventosFiltrados = eventos.filter(item => item.name.toLowerCase().includes(titulo.trim().toLowerCase()))
+    return eventosFiltrados
+
+}
+
+function filtrarPorFecha(eventos, momento, currentDate) {
+    if (momento == "pasado") {
+        eventosFiltrados = eventos.filter(evento => evento.date < currentDate)
+    } else {
+        eventosFiltrados = eventos.filter(evento => evento.date > currentDate)
+    }
+    return eventosFiltrados
+}
+
+function reducirEventos() {
+    let posicion = document.getElementsByClassName('active')
+
+    switch (posicion[0].textContent) {
+        case 'HOME':
+            eventosFiltrados = data.events;
+            break;
+        case 'UPCOMING EVENTS':
+            eventosFiltrados = filtrarPorFecha(data.events, 'futuro', data.currentDate);
+            break;
+        case 'PAST EVENTS':
+            eventosFiltrados = filtrarPorFecha(data.events, 'pasado', data.currentDate)
+            break;
+    }
+    return eventosFiltrados
+}
+
+function filtrarEventos(categorias) {
+    eventosFiltrados = reducirEventos()
+
+    //Obtengo los checks marcados
+
+    checkeados = []
+    for (input of categorias) {
+        if (input.checked) {
+            checkeados.push(input.value);
+        }
+    }
+
+    //Obtengo el texto a buscar
+    let busqueda = document.getElementById('buscar').value;
+
+    if (checkeados.length > 0) {
+        eventosFiltrados = filtrarPorCategoria(eventosFiltrados, checkeados)
+    }
+
+    eventosFiltrados = filtrarPorTitulo(eventosFiltrados, busqueda)
+
+    return eventosFiltrados
+}
+
+
 
