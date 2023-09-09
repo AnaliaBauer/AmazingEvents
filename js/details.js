@@ -1,9 +1,21 @@
-const queryString = location.search
 
-const params = new URLSearchParams(queryString)
+let urlApiEvents = 'https://mindhub-xj03.onrender.com/api/amazing'
 
-const id = params.get("id")
+async function obtenerDatos(){
 
-const detalleEvento = data.events.find(evento => evento._id == id)
+    const respuesta = await fetch(urlApiEvents);
 
-crearTarjetaDetalle(detalleEvento);
+    datosOrigen = await respuesta.json();
+
+    const queryString = location.search
+
+    const params = new URLSearchParams(queryString) 
+
+    const id = params.get("id")
+
+    const detalleEvento = datosOrigen.events.find((evento) => evento._id == id)
+
+    crearTarjetaDetalle(detalleEvento);
+}
+
+obtenerDatos();

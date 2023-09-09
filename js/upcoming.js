@@ -1,22 +1,29 @@
-
+let urlApiEvents = 'https://mindhub-xj03.onrender.com/api/amazing'
 let proximosEventos = []
+let categoriasSinRepetir = []
 
-for (let evento of data.events) {
+async function obtenerDatos() {
 
-    // let banana = evento.date.split('-')
+    const respuesta = await fetch(urlApiEvents);
+    datosOrigen = await respuesta.json();
+
+    for (let evento of datosOrigen.events) {
+
     let fechaEvento = Date.parse(evento.date)
-    let fechaActual = Date.parse(data.currentDate)
+    let fechaActual = Date.parse(datosOrigen.currentDate)
 
 
     if (fechaActual < fechaEvento) {
         proximosEventos.push(evento)
     }
 }
-
-createTarjetas(proximosEventos)
-
-createSearchBar();
-
-createCheck(categorias, contenedorInputs);
+    categorias = datosOrigen.events.map(evento => evento.category);
+    categoriasSinRepetir = categorias.filter((categoria, index)=> categorias.indexOf(categoria) === index);
+    createTarjetas(proximosEventos);
+    createCheck(categoriasSinRepetir, contenedorInputs);
+    createSearchBar();
+    // return datosOrigen
+}
+obtenerDatos(); 
 
 
