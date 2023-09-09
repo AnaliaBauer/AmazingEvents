@@ -9,12 +9,16 @@ async function obtenerDatos() {
     // categoriasSinRepetir = categorias.filter((categoria, index)=> categorias.indexOf(categoria) === index);
     // console.log(categoriasSinRepetir)
 
- 
-    let pasados = filtrarPorFecha(datosOrigen.events, "pasado", datosOrigen.currentDate)
-    let top = TopAssist(pasados)
-    // StatisticsData(top)
-    let less = LowAssist(pasados)
-    let mayorCapacidad = TopCapacity(datosOrigen.events)
+    
+     let pasados = filtrarPorFecha(datosOrigen.events, "pasado", datosOrigen.currentDate)
+     let top = TopAssist(pasados)
+     let low = LowAssist(pasados)
+     let mayorCapacidad = TopCapacity(datosOrigen.events)
+
+    TopAssistCard(top)
+    LowAssistCard(low)
+    TopCapacityCard(mayorCapacidad)
+
 
     let resultadoGananciasFuturas = getGananciasFuturas(datosOrigen.events, datosOrigen.currentDate);
     let sumatoriaFutura = filtrarCategoriaYGanancia(resultadoGananciasFuturas);

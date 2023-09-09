@@ -4,7 +4,6 @@ let contenedorSearchBar = document.getElementById("contenedorSearchBar");
 let contenedorInputs = document.getElementById("contenedor-inputs");
 let contenedorDetails = document.getElementById('contenedor-details');
 //tablas
-let contenedorT1 = document.querySelector('#table1 tbody #data')
 let contenedorT2 = document.querySelector('#table2 tbody')
 let contenedorT3 = document.querySelector('#table3 tbody')
 
@@ -41,19 +40,38 @@ function createTarjetas(Eventos) {
     }
 
 }
+let contenedor_Top = document.getElementById('top')
 
-function StatisticsData(eventos) {
-
-    contenedorT1.innerHTML = ""
-
+function TopAssistCard(eventos) {
+    contenedor_Top.innerHTML = ""
     for (evento of eventos) {
 
-        let data =
-            `
-            <td>${evento.name}</td>
-            <td>${evento.asistencia}</td>
-         `
-        contenedorT1.innerHTML += data;
+        let data = `<tr>
+        <td>${evento.name}</td><td>${evento.asistencia}</td>
+        </tr>`
+        contenedor_Top.innerHTML += data;
+    }
+}
+let contenedor_Low = document.getElementById('low')
+function LowAssistCard(eventos) {
+    contenedor_Low.innerHTML = ""
+    for (evento of eventos) {
+
+        let data = `<tr>
+                        <td>${evento.name}</td><td>${evento.asistencia}</td>
+                        </tr>`
+        contenedor_Low.innerHTML += data;
+    }
+}
+let contenedor_High = document.getElementById('high')
+function TopCapacityCard(eventos) {
+    contenedor_High.innerHTML = ""
+    for (evento of eventos) {
+
+        let data = `<tr>
+                        <td>${evento.name}</td><td>${evento.capacity}</td>
+                    </tr>`
+        contenedor_High.innerHTML += data;
     }
 }
 
