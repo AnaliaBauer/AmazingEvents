@@ -6,11 +6,13 @@ let contenedorDetails = document.getElementById('contenedor-details');
 //tablas
 let contenedorT2 = document.querySelector('#table2 tbody')
 let contenedorT3 = document.querySelector('#table3 tbody')
+let contenedor_Low = document.getElementById('low')
+let contenedor_Top = document.getElementById('top')
+let contenedor_High = document.getElementById('high')
 
-
+//variables
 let datosOrigen
 let categorias = [];
-
 let checkeados = [];
 let eventosFiltrados = [];
 let resultado = [];
@@ -25,7 +27,7 @@ function createTarjetas(Eventos) {
 
         let card = `<div class="col-12 col-sm-6  col-lg-4 col-xl-3 pb-5 d-flex">
         <div class="card text-end">
-        <img src= ${evento.image} class="card-img-top" alt="..." width="100%" height="200px" object-fit-cover>
+        <img src= ${evento.image} class="card-img-top" alt="..." height="200px" object-fit-cover>
         <div class="card-body d-flex flex-column">
         <h5 class="card-title">${evento.name}</h5>
         <p class="card-text">${evento.description}</p>  
@@ -40,30 +42,27 @@ function createTarjetas(Eventos) {
     }
 
 }
-let contenedor_Top = document.getElementById('top')
 
 function TopAssistCard(eventos) {
     contenedor_Top.innerHTML = ""
     for (evento of eventos) {
 
         let data = `<tr>
-        <td>${evento.name}</td><td>${evento.asistencia}</td>
+        <td>${evento.name}</td><td>${evento.asistencia}%</td>
         </tr>`
         contenedor_Top.innerHTML += data;
     }
 }
-let contenedor_Low = document.getElementById('low')
 function LowAssistCard(eventos) {
     contenedor_Low.innerHTML = ""
     for (evento of eventos) {
 
         let data = `<tr>
-                        <td>${evento.name}</td><td>${evento.asistencia}</td>
-                        </tr>`
+            <td>${evento.name}</td><td>${evento.asistencia}%</td>
+        </tr>`
         contenedor_Low.innerHTML += data;
     }
 }
-let contenedor_High = document.getElementById('high')
 function TopCapacityCard(eventos) {
     contenedor_High.innerHTML = ""
     for (evento of eventos) {
@@ -75,10 +74,6 @@ function TopCapacityCard(eventos) {
     }
 }
 
-
-
-
-
 function createTrTable2(categorias) {
 
     contenedorT2.innerHTML = ""
@@ -89,8 +84,8 @@ function createTrTable2(categorias) {
         <td>
         ${categoria.Nombre}
         </td>
-        <td>${categoria.Total}</td>
-        <td>${categoria.Promedio}</td>
+        <td>u$s${categoria.Total}</td>
+        <td>${categoria.Promedio}%</td>
         </tr>`
         contenedorT2.innerHTML += data;
     }
@@ -106,15 +101,12 @@ function createTrTable3(categorias) {
         <td>
         ${categoria.Nombre}
         </td>
-        <td>${categoria.Total}</td>
-        <td>${categoria.Promedio}</td>
+        <td>u$s${categoria.Total}</td>
+        <td>${categoria.Promedio}%</td>
         </tr>`
         contenedorT3.innerHTML += data;
     }
 }
-
-
-
 
 // Funcion para crear barra de busqueda
 function createSearchBar() {
@@ -128,17 +120,6 @@ function createSearchBar() {
     contenedorSearchBar.innerHTML += searchBar
 }
 
-// function limpiarCategorias(datos){
-
-//      let categorias = datos.events.map(evento => evento.category);
-//     // Filtro de check 
-//     categorias = categorias.reduce((categorias, categoria) => {
-//         if (!categorias.includes(categoria)) {
-//             categorias.push(categoria);
-//         }
-//         return categorias;
-//     }, [])
-// }
 
 // Funcion para crear checkbox
 function createCheck(array, contenedor) {
@@ -311,7 +292,7 @@ function TopAssist(eventos) {
     //3 Eventos con mayor % de aistencia
 
     eventos.forEach(item => {
-        item.asistencia = ((item.assistance * 100) / item.capacity)
+        item.asistencia = Math.round(((item.assistance * 100) / item.capacity))
     });
     eventos.sort(((a, b) => b.asistencia - a.asistencia))
     eventos = eventos.slice(0, 3)
@@ -321,7 +302,7 @@ function TopAssist(eventos) {
 
 function LowAssist(eventos) {
     eventos.forEach(item => {
-        item.asistencia = ((item.assistance * 100) / item.capacity)
+        item.asistencia = Math.round(((item.assistance * 100) / item.capacity))
     });
     eventos.sort(((a, b) => a.asistencia - b.asistencia))
     eventos = eventos.slice(0, 3)
@@ -335,55 +316,6 @@ function TopCapacity(eventos) {
     return eventos
 }
 
-
-
-
-//funcion para calcular la porcentaje de asistencia en past events
-//debera imprimir en la tabla el nombre del evento que tenga mayor o menor porcentaje segun corresponda
-// let porcentajesPast
-
-
-
-// function getAssist(eventos) {
-
-//     eventosFiltrados = filtrarPorFecha(eventos.events, 'pasado', eventos.currentDate);
-
-//     porcentajesPast = eventosFiltrados.map(evento => ((evento.assistance * 100) / (evento.capacity)))
-
-//     porcentajesPast.sort((a, b) => {
-
-//         if (a < b) { return -1 }
-//         if (a > b) { return 1 }
-//         return 0
-//     })
-
-//     console.log(porcentajesPast)
-//     return porcentajesPast;
-// }
-
-
-// let porcentajesUpcoming
-// function getUpcoming(eventos) {
-
-//     eventosFiltrados = filtrarPorFecha(eventos.events, 'futuro', eventos.currentDate);
-
-//     porcentajesUpcoming = eventosFiltrados.map(evento => ((evento.estimate * 100) / (evento.capacity)))
-
-//     porcentajesUpcoming.sort((a, b) => {
-
-//         if (a < b) { return -1 }
-//         if (a > b) { return 1 }
-//         return 0
-//     })
-
-//     console.log(porcentajesUpcoming)
-//     return porcentajesUpcoming
-// }
-
-
-//arreglo de capacidades ordenadas de menor a mayor
-
-//ganancias por categoria No anda
 function getGananciasPasadas(eventos, fecha) {
     let gananciasEventosPasados = []
     let ganancia
@@ -417,10 +349,10 @@ function getGananciasFuturas(eventos, fecha) {
 function filtrarCategoriaYGanancia(eventos) {
     eventos.forEach(item => {
         if (item.estimate != undefined) {
-            item.estimado = ((item.estimate * 100) / item.capacity)
+            item.estimado = Math.round((item.estimate * 100) / item.capacity)
         }
         else {
-            item.asistencia = ((item.assistance * 100) / item.capacity)
+            item.asistencia = Math.round((item.assistance * 100) / item.capacity)
         }
     });
 
