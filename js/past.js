@@ -22,11 +22,9 @@ async function obtenerDatos(){
 
 createTarjetas(eventosPasados)
 createCheck(categoriasSinRepetir, contenedorInputs);
-filtrarEventos(categorias);
 createSearchBar();
 
 }
-
 obtenerDatos();
 
 
